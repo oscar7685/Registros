@@ -17,10 +17,7 @@ import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author Ususario
- */
+
 @ManagedBean
 @Component
 public class FacultadMB {
