@@ -11,6 +11,10 @@
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>PrimeFaces</title>
                 <style type="text/css">
+                    #content {
+                        float: left;
+                        width: 70%;
+                    }
                     .ui-datatable .ui-datatable-header {
                         text-align: right !important;
                     }
@@ -24,6 +28,15 @@
                         overflow:visible !important;
                         border: 0px !important; 
                     }
+                    .ui-layout-center {
+                        border: 0px !important; 
+                        margin-left: 10px !important;
+                    }
+                    .ui-layout-west {
+                        padding:0px !important;
+                        
+                    }
+                    
 
                     .noradio {
                         -moz-border-radius: 0px !important;
@@ -47,6 +60,9 @@
 
                     .ui-menu.ui-widget li > .ui-menuitem-link .ui-icon{
                         background-image: url("/registrosWeb/javax.faces.resource/images/ui-icons_ffffff_256x240.png.xhtml?ln=primefaces-bootstrap");
+                    }
+                    .ui-widget {
+                        font-size: 12px !important;
                     }
 
                     .ui-menu.ui-widget li > .ui-menuitem-link.ui-state-hover, 
@@ -111,7 +127,7 @@
                     Footer
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="250" header="Left" collapsible="true" gutter="0">
+                <p:layoutUnit position="west" size="250" header="Left" collapsible="true" gutter="0" styleClass="ui-shadow dian">
                     <ui:insert name="sidebar">
                         <h:form>
                             <p:menu>
@@ -130,44 +146,46 @@
                 <p:layoutUnit position="center" gutter="0">
                     <ui:insert name="cambiante">
                         <f:view>
-                            <h:form id="form">
-                                <p:growl id="messages" showDetail="true"/>  
-                                <h2>Lista de Facultades</h2>
-                                <p:dataTable value="#{facultadMB.facultades}" var="item" id="facultadList" widgetVar="facultadTable"  
-                                             emptyMessage="No se encontraron facultades con los criterios dados" editable="true">
+                            <div id="content">
+                                <h:form id="form">
+                                    <p:growl id="messages" showDetail="true"/>  
+                                    <h2>Lista de Facultades</h2>
+                                    <p:dataTable value="#{facultadMB.facultades}" var="item" id="facultadList" widgetVar="facultadTable"  
+                                                 emptyMessage="No se encontraron facultades con los criterios dados" editable="true">
 
-                                    <p:ajax event="rowEdit" listener="#{facultadMB.onEdit}" update=":form:messages" />  
-                                    <p:ajax event="rowEditCancel" listener="#{facultadMB.onCancel}" update=":form:messages" />  
-                                    <f:facet name="header">  
-                                        <h:outputText value="Buscar: " />  
-                                        <p:inputText id="globalFilter" onkeyup="facultadTable.filter()" style="width:150px" />  
-                                    </f:facet>  
+                                        <p:ajax event="rowEdit" listener="#{facultadMB.onEdit}" update=":form:messages" />  
+                                        <p:ajax event="rowEditCancel" listener="#{facultadMB.onCancel}" update=":form:messages" />  
+                                        <f:facet name="header">  
+                                            <h:outputText value="Buscar: " />  
+                                            <p:inputText id="globalFilter" onkeyup="facultadTable.filter()" style="width:150px" />  
+                                        </f:facet>  
 
-                                    <p:column headerText="Idfacultad" filterBy="#{item.idfacultad}" filterMatchMode="contains" filterStyle="display:none">
-                                        <p:cellEditor>
-                                            <f:facet name="output">  
-                                                <h:outputText value="#{item.idfacultad}" />  
-                                            </f:facet>  
-                                            <f:facet name="input">  
-                                                <p:inputText value="#{item.idfacultad}" style="width:100%" label="IdFacultad"/>  
-                                            </f:facet>  
-                                        </p:cellEditor>  
-                                    </p:column>
-                                    <p:column headerText="Nombre" filterBy="#{item.nombre}" filterMatchMode="contains" filterStyle="display:none">
-                                        <p:cellEditor>
-                                            <f:facet name="output">  
-                                                <h:outputText value="#{item.nombre}" />  
-                                            </f:facet>  
-                                            <f:facet name="input">  
-                                                <p:inputText value="#{item.nombre}" style="width:100%" label="Nombre"/>  
-                                            </f:facet>  
-                                        </p:cellEditor>
-                                    </p:column>
-                                    <p:column headerText="Acci&oacute;n" style="width:6%">  
-                                        <p:rowEditor />  
-                                    </p:column>  
-                                </p:dataTable>
-                            </h:form>
+                                        <p:column headerText="Idfacultad" filterBy="#{item.idfacultad}" filterMatchMode="contains" filterStyle="display:none">
+                                            <p:cellEditor>
+                                                <f:facet name="output">  
+                                                    <h:outputText value="#{item.idfacultad}" />  
+                                                </f:facet>  
+                                                <f:facet name="input">  
+                                                    <p:inputText value="#{item.idfacultad}" style="width:100%" label="IdFacultad"/>  
+                                                </f:facet>  
+                                            </p:cellEditor>  
+                                        </p:column>
+                                        <p:column headerText="Nombre" filterBy="#{item.nombre}" filterMatchMode="contains" filterStyle="display:none">
+                                            <p:cellEditor>
+                                                <f:facet name="output">  
+                                                    <h:outputText value="#{item.nombre}" />  
+                                                </f:facet>  
+                                                <f:facet name="input">  
+                                                    <p:inputText value="#{item.nombre}" style="width:100%" label="Nombre"/>  
+                                                </f:facet>  
+                                            </p:cellEditor>
+                                        </p:column>
+                                        <p:column headerText="Acci&oacute;n" style="width:6%">  
+                                            <p:rowEditor />  
+                                        </p:column>  
+                                    </p:dataTable>
+                                </h:form>
+                            </div>
                         </f:view>
                     </ui:insert>
                 </p:layoutUnit>
